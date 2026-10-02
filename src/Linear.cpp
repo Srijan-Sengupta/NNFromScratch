@@ -5,17 +5,17 @@
 #include "Linear.h"
 
 #include <xtensor/xrandom.hpp>
+#include <xtensor/xmath.hpp>
 
 namespace nn {
-    Linear::Linear(const std::size_t in, const std::size_t out) :
+    Linear::Linear(const std::size_t in, const std::size_t out, double lr) :
         weights(in, out),
         bias(1, out),
         input(0, 0),
-        weights_grad(in, out),
-        bias_grad(1, out)
+        learning_rate(lr)
     {
-        weights.data = xt::random::rand(weights.shape(), 0.0001, 0.9999);
-        bias.data =  xt::random::rand(weights.shape(), 0.0001, 0.9999);;
+        weights.data = xt::random::rand(weights.shape(), -0.9999, 0.9999);
+        bias.data =  xt::random::rand(bias.shape(), -0.9999, 0.9999);;
     }
 
     Matrix Linear::forward(const Matrix &x) {
@@ -24,9 +24,11 @@ namespace nn {
     }
 
     Matrix Linear::backward(const Matrix &delta) {
-        weights_grad = input.T() *  delta;
-        bias_grad = delta.sum_rows();
-        Matrix grad_input = delta * weights.T();
-        return grad_input;
+        Matrix grad_inp = delta * weights.T();
+        Matrix grad_w = input.T() * delta;
+
+        weights = weights + (grad_w * learning_rate);
+        bias = bias + (delta * learning_rate);
+        return grad_inp;
     }
 } // nn

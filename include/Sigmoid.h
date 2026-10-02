@@ -8,9 +8,12 @@
 
 namespace nn {
     class Sigmoid: public Module {
-        public:
-            Matrix forward(const Matrix &x) override;
-            Matrix backward(const Matrix &x) override;
+    private:
+        Matrix saved_out;
+    public:
+        Sigmoid() = default;
+        Matrix forward(const Matrix &x) override;
+        Matrix backward(const Matrix &x) override;
     };
 }
 

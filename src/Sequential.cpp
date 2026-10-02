@@ -25,12 +25,4 @@ namespace nn {
         }
         return grad;
     }
-
-    void Sequential::update(const float alpha) {
-        for (auto &module: modules) {
-            auto* linear = dynamic_cast<Linear*>(module.get());
-            if (linear != nullptr)
-                linear->update(alpha);
-        }
-    }
 }

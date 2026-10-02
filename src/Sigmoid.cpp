@@ -7,10 +7,12 @@
 
 namespace nn {
 Matrix Sigmoid::forward(const Matrix &x) {
-    return x.sigmoid();
+    saved_out = x.sigmoid();
+    return saved_out;
 }
 
 Matrix Sigmoid::backward(const Matrix &x) {
-    return  x.multiply(x.sigmoid_derivative());
+    Matrix derivative = saved_out.sigmoid_derivative();
+    return x.multiply(derivative);
 }
 }

@@ -14,10 +14,9 @@ namespace nn {
 
         Matrix input;
 
-        Matrix weights_grad;
-        Matrix bias_grad;
+        double learning_rate;
     public:
-        Linear(std::size_t in, std::size_t out);
+        Linear(std::size_t in, std::size_t out, double lr);
         Matrix forward(const Matrix &x) override;
         Matrix backward(const Matrix &grad_out) override;
         void update(float alpha);

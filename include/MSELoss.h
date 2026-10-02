@@ -9,9 +9,13 @@
 
 namespace nn {
         class MSELoss {
+        private:
+                Matrix saved_pred;
+                Matrix saved_target;
         public:
-                float forward(Matrix &pred, Matrix &target);
-                Matrix backward(Matrix &pred, Matrix &target);
+                MSELoss() = default;
+                float forward(const Matrix &pred, const Matrix &target);
+                Matrix backward() const;
         };
 }
 

@@ -11,9 +11,9 @@ int main() {
 
     nn::Sequential model;
 
-    model.add<nn::Linear>(2, 4);
+    model.add<nn::Linear>(2, 4, 0.5);
     model.add<nn::Sigmoid>();
-    model.add<nn::Linear>(4, 1);
+    model.add<nn::Linear>(4, 1, 0.5);
     model.add<nn::Sigmoid>();
 
     const nn::Matrix input({

@@ -14,6 +14,7 @@ namespace nn{
     private:
         std::vector<std::unique_ptr<Module>> modules;
     public:
+        Sequential() = default;
         template<typename T, typename... Args>
         void add(Args&&... args) {
             modules.push_back(
@@ -24,7 +25,6 @@ namespace nn{
 
         Matrix forward(const Matrix &x) override;
         Matrix backward(const Matrix &x) override;
-        void update(const float alpha);
     };
 }
 
