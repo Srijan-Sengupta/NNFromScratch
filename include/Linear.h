@@ -19,7 +19,6 @@ namespace nn {
         Linear(std::size_t in, std::size_t out, double lr);
         Matrix forward(const Matrix &x) override;
         Matrix backward(const Matrix &grad_out) override;
-        void update(float alpha);
     };
 } // nn
 

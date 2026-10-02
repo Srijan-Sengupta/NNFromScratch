@@ -9,7 +9,9 @@
 
 void test_xor_training() {
     nn::Sequential model;
-    model.add<nn::Linear>(2, 4, 0.5);
+    model.add<nn::Linear>(2, 8, 0.5);
+    model.add<nn::Sigmoid>();
+    model.add<nn::Linear>(8, 4, 0.5);
     model.add<nn::Sigmoid>();
     model.add<nn::Linear>(4, 1, 0.5);
     model.add<nn::Sigmoid>();

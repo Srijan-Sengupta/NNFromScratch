@@ -21,7 +21,9 @@ namespace nn {
         std::size_t i = 0;
 
         for (const auto& row : list) {
+#ifdef NDEBUG
             assert(row.size() == cols);
+#endif
             std::size_t j = 0;
             for (const float value : row) {
                 data(i, j) = value;
@@ -48,9 +50,10 @@ namespace nn {
     }
 
     Matrix Matrix::operator+(const Matrix &x) const {
+#ifdef NDEBUG
         std::cout << "Add: " << get_rows() << " " << get_cols() << " " << x.get_rows()  << " " << x.get_cols()<< std::endl;
         assert(get_cols() == x.get_cols());
-
+#endif
         Matrix result(get_rows(), get_cols());
 
         result.data = data + x.data;
@@ -59,7 +62,9 @@ namespace nn {
     }
 
     Matrix Matrix::operator-(const Matrix &x) const {
+#ifdef NDEBUG
         assert(get_cols() == x.get_cols());
+#endif
 
         Matrix result(get_rows(), get_cols());
 
@@ -69,8 +74,10 @@ namespace nn {
     }
 
     Matrix Matrix::operator*(const Matrix &x) const {
+        #ifdef NDEBUG
         std::cout<< "Multiply: " << get_rows() << " " << get_cols() << " " << x.get_rows()  << " " << x.get_cols()<< std::endl;
         assert(get_cols() == x.get_rows());
+        #endif
 
         Matrix result(get_rows(), x.get_cols());
 
@@ -84,7 +91,7 @@ namespace nn {
         return result;
     }
 
-    // Hamard multiplication
+    // Hadamard multiplication
     Matrix Matrix::multiply(const Matrix &x) const {
         assert(get_rows() == x.get_rows());
         assert(get_cols() == x.get_cols());

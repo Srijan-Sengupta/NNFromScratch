@@ -15,7 +15,7 @@ namespace nn {
         learning_rate(lr)
     {
         weights.data = xt::random::rand(weights.shape(), -0.9999, 0.9999);
-        bias.data =  xt::random::rand(bias.shape(), -0.9999, 0.9999);;
+        bias.data =  xt::random::rand(bias.shape(), -0.9999, 0.9999);
     }
 
     Matrix Linear::forward(const Matrix &x) {
