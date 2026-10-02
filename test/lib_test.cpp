@@ -55,7 +55,7 @@ void test_xor_training() {
         double out_val = pred(0, 0);
         double target_val = Y[i](0, 0);
 
-        std::cout << "Input: " << X[i](0,0) << "," << X[i](1,0)
+        std::cout << "Input: " << X[i](0,0) << "," << X[i](0,1)
                   << " | Target: " << target_val
                   << " | Pred: " << out_val << "\n";
 
