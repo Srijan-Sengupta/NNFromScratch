@@ -10,6 +10,7 @@
 namespace nn {
     class Matrix {
     public:
+        Matrix() = default;
         xt::xarray<std::float_t> data;
         Matrix(std::size_t rows, std::size_t cols);
         Matrix(std::initializer_list<std::initializer_list<std::float_t>> list);
